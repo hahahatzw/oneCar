@@ -1,9 +1,12 @@
 package com.sicau.one_car.controller;
 
+import com.sicau.one_car.entity.vo.ResultVO;
+import com.sicau.one_car.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,9 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
  * CreateTime 20:41 2019/10/25
  **/
 
-@RestController
+
 @Api(value = "用户信息" ,description = "用于用户信息的增删查改")
+@RestController
 public class UserController {
+
+    @Autowired
+    private UserService userService;
 
     @ApiOperation(value = "用户登陆",notes = " ")
     @ApiImplicitParams({
@@ -25,9 +32,9 @@ public class UserController {
             @ApiImplicitParam(name = "password",value = "用户密码",required = true,dataType = "string",paramType = "query")
     })
     @GetMapping("/login")
-    public String login(@RequestParam("username") String  username,
-                        @RequestParam("password") String password)
+    public ResultVO login(@RequestParam("username") String  username,
+                          @RequestParam("password") String password)
     {
-        return username+password;
+        return userService.login(username,password);
     }
 }

@@ -1,11 +1,18 @@
 package com.sicau.one_car.service.serviceImpl;
 
+import com.sicau.one_car.common.Const;
 import com.sicau.one_car.dao.UserDao;
+import com.sicau.one_car.entity.dto.User;
 import com.sicau.one_car.entity.vo.ResultVO;
 import com.sicau.one_car.service.UserService;
 import com.sicau.one_car.util.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Description:
@@ -23,10 +30,12 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public ResultVO login(String username, String password) {
+    public ResultVO login(String username, String password, HttpServletRequest request) {
        try {
-           int result=userDao.selectByNameAndPassword(username,password);
-           if(result==1)
+           User user=userDao.selectByNameAndPassword(username,password);
+           HttpSession session=request.getSession();
+           session.setAttribute(Const.RoleEnum.USER.getRole(),user);
+           if(user!=null)
                return resultVOUtil.success();
            else
                return resultVOUtil.fail();

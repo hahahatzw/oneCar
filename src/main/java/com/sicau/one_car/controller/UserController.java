@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 /**
  * Description:用户信息管理controller层
  * @author tzw
@@ -33,8 +38,11 @@ public class UserController {
     })
     @GetMapping("/login")
     public ResultVO login(@RequestParam("username") String  username,
-                          @RequestParam("password") String password)
+                          @RequestParam("password") String password,
+                          HttpServletRequest request)
     {
-        return userService.login(username,password);
+        return userService.login(username,password,request);
     }
+
+
 }

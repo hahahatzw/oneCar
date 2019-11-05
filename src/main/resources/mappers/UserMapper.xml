@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sicau.one_car.dao.UserDao">
 
-    <select id="selectByNameAndPassword" resultType="java.lang.Integer">
+    <select id="selectByNameAndPassword" resultType="com.sicau.one_car.entity.dto.User">
         select * from user_tb where username=#{username} and password=#{password}
     </select>
 </mapper>

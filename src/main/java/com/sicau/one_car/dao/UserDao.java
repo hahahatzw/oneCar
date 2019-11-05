@@ -1,5 +1,6 @@
 package com.sicau.one_car.dao;
 
+import com.sicau.one_car.entity.dto.User;
 import org.apache.ibatis.annotations.Param;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
@@ -13,5 +14,5 @@ import org.springframework.stereotype.Component;
 @Mapper
 public interface UserDao {
 
-    int selectByNameAndPassword(@Param("username") String username,@Param("password") String password);
+    User selectByNameAndPassword(@Param("username") String username, @Param("password") String password);
 }

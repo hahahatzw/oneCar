@@ -15,4 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 public interface UserService {
 
     ResultVO login(String username, String password, HttpServletRequest request);
+
+    ResultVO addUser(String username, String password, String email, HttpServletRequest request);
+
+    ResultVO delUser(String id, HttpServletRequest request);
+
+    ResultVO updateUser(String id, String username, String password, String email, HttpServletRequest request);
 }

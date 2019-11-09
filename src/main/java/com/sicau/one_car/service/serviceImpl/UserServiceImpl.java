@@ -5,6 +5,7 @@ import com.sicau.one_car.dao.UserDao;
 import com.sicau.one_car.entity.dto.User;
 import com.sicau.one_car.entity.vo.ResultVO;
 import com.sicau.one_car.service.UserService;
+import com.sicau.one_car.util.IDUtil;
 import com.sicau.one_car.util.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,50 @@ public class UserServiceImpl implements UserService {
            e.printStackTrace();
            return resultVOUtil.unknownError();
        }
+    }
+
+    @Override
+    public ResultVO addUser(String username, String password, String email, HttpServletRequest request) {
+        try {
+            boolean addTest = userDao.addUser(IDUtil.getUUID(),username,password,email);
+            if(addTest)
+                return resultVOUtil.success();
+            else
+                return resultVOUtil.fail();
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            return resultVOUtil.unknownError();
+        }
+    }
+
+    @Override
+    public ResultVO delUser(String id, HttpServletRequest request) {
+        try {
+            boolean delTest = userDao.delUser(id);
+            if(delTest)
+                return resultVOUtil.success();
+            else
+                return resultVOUtil.fail();
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            return resultVOUtil.unknownError();
+        }
+    }
+
+    @Override
+    public ResultVO updateUser(String id, String username, String password, String email, HttpServletRequest request) {
+        try {
+            boolean updataTest = userDao.updateUser(id,username,password,email);
+            if(updataTest)
+                return resultVOUtil.success();
+            else
+                return resultVOUtil.fail();
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            return resultVOUtil.unknownError();
+        }
     }
 }

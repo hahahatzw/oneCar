@@ -2,6 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sicau.one_car.dao.UserDao">
+    <insert id="addUser">
+        INSERT INTO user_tb(id, username, password
+        <if test="email != null">
+            ,email
+        </if>) VALUES (#{id},#{username},#{password}
+       <if test="email != null">
+           ,#{email}
+       </if>);
+    </insert>
+    <update id="updateUser">
+        update user_tb
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="delUser">
+        delete from user_tb where id = #{id}
+    </delete>
 
     <select id="selectByNameAndPassword" resultType="com.sicau.one_car.entity.dto.User">
         select * from user_tb where username=#{username} and password=#{password}

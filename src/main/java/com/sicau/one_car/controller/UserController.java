@@ -7,10 +7,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -44,5 +41,61 @@ public class UserController {
         return userService.login(username,password,request);
     }
 
+    /**
+     * Description:增加用户
+     * @author yj
+     * CreateTime 20:41 2019/11/6
+     **/
+    @ApiOperation(value = "注册用户",notes = " ")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username",value = "用户名",required = true,dataType = "string",paramType = "query"),
+            @ApiImplicitParam(name = "password",value = "用户密码",required = true,dataType = "string",paramType = "query"),
+            @ApiImplicitParam(name = "email",value = "用户邮箱",required = true,dataType = "string",paramType = "query")
+    })
+    @PostMapping("/user")
+    public ResultVO addUser(@RequestParam("username") String  username,
+                          @RequestParam("password") String password,
+                          @RequestParam("email") String email,
+                          HttpServletRequest request)
+    {
+        return userService.addUser(username,password,email,request);
+    }
 
+    /**
+     * Description:删除用户
+     * @author yj
+     * CreateTime 20:52 2019/11/6
+     **/
+    @ApiOperation(value = "删除用户",notes = " ")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id",value = "用户id",required = true,dataType = "string",paramType = "query")
+    })
+    @DeleteMapping("/user/{id}")
+    public ResultVO addUser(@PathVariable("id") String id,
+                            HttpServletRequest request)
+    {
+        return userService.delUser(id,request);
+    }
+
+    /**
+     * Description:修改用户信息
+     * @author yj
+     * CreateTime 20:52 2019/11/6
+     **/
+    @ApiOperation(value = "修改用户信息",notes = " ")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id",value = "用户id",required = true,dataType = "string",paramType = "query"),
+            @ApiImplicitParam(name = "username",value = "用户名",required = true,dataType = "string",paramType = "query"),
+            @ApiImplicitParam(name = "password",value = "用户密码",required = true,dataType = "string",paramType = "query"),
+            @ApiImplicitParam(name = "email",value = "用户邮箱",required = true,dataType = "string",paramType = "query")
+    })
+    @PutMapping("/user/{id}")
+    public ResultVO updateUser(@PathVariable("id") String id,
+                               @RequestParam("username") String  username,
+                               @RequestParam("password") String password,
+                               @RequestParam("email") String email,
+                            HttpServletRequest request)
+    {
+        return userService.updateUser(id,username,password,email,request);
+    }
 }

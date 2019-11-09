@@ -15,4 +15,10 @@ import org.springframework.stereotype.Component;
 public interface UserDao {
 
     User selectByNameAndPassword(@Param("username") String username, @Param("password") String password);
+
+    boolean addUser(@Param("id") String id,@Param("username") String username, @Param("password") String password,@Param("email") String email);
+
+    boolean delUser(@Param("id") String id);
+
+    boolean updateUser(@Param("id") String id,@Param("username") String username, @Param("password") String password,@Param("email") String email);
 }

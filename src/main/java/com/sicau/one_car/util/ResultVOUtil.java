@@ -15,8 +15,8 @@ public class ResultVOUtil {
     public ResultVO success()
     {
         ResultVO resultVO=new ResultVO();
-        resultVO.setCode( Const.ResultEnum.SUCESS.getCode());
-        resultVO.setMsg(Const.ResultEnum.SUCESS.getMsg());
+        resultVO.setCode( Const.ResultEnum.SUCCESS.getCode());
+        resultVO.setMsg(Const.ResultEnum.SUCCESS.getMsg());
         return resultVO;
     }
     public ResultVO success(String msg)

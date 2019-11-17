@@ -52,7 +52,7 @@ public class UserController {
             @ApiImplicitParam(name = "password",value = "用户密码",required = true,dataType = "string",paramType = "query"),
             @ApiImplicitParam(name = "email",value = "用户邮箱",required = true,dataType = "string",paramType = "query")
     })
-    @PostMapping("/user")
+    @PostMapping("/unpub/user")
     public ResultVO addUser(@RequestParam("username") String  username,
                           @RequestParam("password") String password,
                           @RequestParam("email") String email,
@@ -70,7 +70,7 @@ public class UserController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id",value = "用户id",required = true,dataType = "string",paramType = "query")
     })
-    @DeleteMapping("/user/{id}")
+    @GetMapping("/unpub/user/{id}")
     public ResultVO addUser(@PathVariable("id") String id,
                             HttpServletRequest request)
     {
@@ -89,7 +89,7 @@ public class UserController {
             @ApiImplicitParam(name = "password",value = "用户密码",required = true,dataType = "string",paramType = "query"),
             @ApiImplicitParam(name = "email",value = "用户邮箱",required = true,dataType = "string",paramType = "query")
     })
-    @PutMapping("/user/{id}")
+    @PutMapping("/unpub/user/{id}")
     public ResultVO updateUser(@PathVariable("id") String id,
                                @RequestParam("username") String  username,
                                @RequestParam("password") String password,

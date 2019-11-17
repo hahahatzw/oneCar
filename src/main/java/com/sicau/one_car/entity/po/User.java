@@ -1,7 +1,7 @@
-package com.sicau.one_car.entity.dto;
+package com.sicau.one_car.entity.po;
 
 /**
- * Description:
+ * Description:用户实体类
  * @author tzw
  * CreateTime 16:22 2019/11/2
  **/

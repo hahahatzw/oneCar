@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sicau.one_car.dao.DraftDao">
+    <insert id="insertDraft" parameterType="com.sicau.one_car.entity.dto.DraftDto" >
+         insert into draft_tb(id, content, img_src, user_id, view_num, like_num)
+         values (#{draftDto.id},#{draftDto.content},#{draftDto.imgSrc},
+         #{draftDto.userId},#{draftDto.viewNum},#{draftDto.likeNum})
+    </insert>
+</mapper>

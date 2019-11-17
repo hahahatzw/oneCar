@@ -5,7 +5,7 @@ import com.sicau.one_car.entity.vo.ResultVO;
 import org.springframework.stereotype.Component;
 
 /**
- * Description:
+ * Description:返回方法工具类
  * @author tzw
  * CreateTime 15:45 2019/11/2
  **/

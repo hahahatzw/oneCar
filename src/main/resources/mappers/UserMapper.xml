@@ -7,8 +7,7 @@
         <if test="email != null">
             ,email
         </if>) VALUES (#{id},#{username},#{password}
-       <if test="email != null">
-           ,#{email}
+       <if test="email != null">,#{email}
        </if>);
     </insert>
     <update id="updateUser">
@@ -30,7 +29,7 @@
         delete from user_tb where id = #{id}
     </delete>
 
-    <select id="selectByNameAndPassword" resultType="com.sicau.one_car.entity.dto.User">
+    <select id="selectByNameAndPassword" resultType="com.sicau.one_car.entity.po.User">
         select * from user_tb where username=#{username} and password=#{password}
     </select>
 </mapper>

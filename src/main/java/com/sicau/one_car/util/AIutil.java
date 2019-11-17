@@ -16,7 +16,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 /**
- * Description:
+ * Description:百度接口调用工具类
  * @author tzw
  * CreateTime 21:09 2019/10/21
  **/

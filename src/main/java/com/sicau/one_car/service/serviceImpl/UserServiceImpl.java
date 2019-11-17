@@ -2,7 +2,7 @@ package com.sicau.one_car.service.serviceImpl;
 
 import com.sicau.one_car.common.Const;
 import com.sicau.one_car.dao.UserDao;
-import com.sicau.one_car.entity.dto.User;
+import com.sicau.one_car.entity.po.User;
 import com.sicau.one_car.entity.vo.ResultVO;
 import com.sicau.one_car.service.UserService;
 import com.sicau.one_car.util.IDUtil;
@@ -10,9 +10,7 @@ import com.sicau.one_car.util.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**

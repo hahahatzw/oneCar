@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sicau.one_car.dao.LabelDao">
+    <insert id="insertRelationWithDraft">
+        insert into draft_label(draft_id, label_id)
+        values
+        <foreach collection="labelsId" item="i" separator=",">
+            (#{draftId},#{i})
+        </foreach>
+    </insert>
+</mapper>

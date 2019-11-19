@@ -7,25 +7,25 @@ package com.sicau.one_car.entity.po;
  * CreateTime 15:13 2019/11/17
  **/
 public class Label {
-    private int id;
-    private String lableName;
+    private int label_id;
+    private String labelName;
 
     public Label() {
     }
 
-    public int getId() {
-        return id;
+    public int getLabel_id() {
+        return label_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setLabel_id(int label_id) {
+        this.label_id = label_id;
     }
 
-    public String getLableName() {
-        return lableName;
+    public String getLabelName() {
+        return labelName;
     }
 
-    public void setLableName(String lableName) {
-        this.lableName = lableName;
+    public void setLabelName(String lableName) {
+        this.labelName = lableName;
     }
 }

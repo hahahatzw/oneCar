@@ -3,6 +3,7 @@ package com.sicau.one_car.entity.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,8 +14,6 @@ import java.util.List;
 @ApiModel
 public class DraftVO {
 
-    @ApiModelProperty(value = "主键id",hidden = true)
-    private String id;
 
     @ApiModelProperty(value = "帖子内容" ,example = "这是一条帖子")
     private String content;
@@ -31,17 +30,10 @@ public class DraftVO {
     @ApiModelProperty(value = "喜欢数",example= "3")
     private int likeNum;
 
+
     public DraftVO() {
         this.viewNum=0;
         this.likeNum=0;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getContent() {

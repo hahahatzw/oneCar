@@ -1,7 +1,10 @@
 package com.sicau.one_car.service;
 
 import com.sicau.one_car.entity.dto.DraftDto;
+import com.sicau.one_car.entity.vo.DraftVO;
 import com.sicau.one_car.entity.vo.ResultVO;
+
+import java.util.List;
 
 /**
  * Description:
@@ -11,5 +14,7 @@ import com.sicau.one_car.entity.vo.ResultVO;
  **/
 public interface DraftService {
 
-    ResultVO addDraft(DraftDto draftDto);
+    ResultVO addDraft(DraftDto draftDto, List<Integer> labelsId);
+
+    ResultVO getDraftById(String id);
 }

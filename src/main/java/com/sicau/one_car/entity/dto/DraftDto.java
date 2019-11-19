@@ -1,8 +1,11 @@
 package com.sicau.one_car.entity.dto;
 
+import com.sicau.one_car.entity.po.Draft;
+import com.sicau.one_car.entity.po.Label;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,32 +13,36 @@ import java.util.List;
  * @author tzw
  * CreateTime 17:52 2019/11/11
  **/
-public class DraftDto {
+public class DraftDto extends Draft{
 
-    private String id;
+    private String draftId;
 
     private String content;
 
     private String imgSrc;
 
-    private List<Integer> labelsId;
+    private List<Label> labels;
 
     private String userId;
+
+    private String username;
 
     private int viewNum;
 
     private int likeNum;
 
+    private Date createTime;
+
     public DraftDto() {
 
     }
 
-    public String getId() {
-        return id;
+    public String getDraftId() {
+        return draftId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setDraftId(String draftId) {
+        this.draftId = draftId;
     }
 
     public String getContent() {
@@ -54,20 +61,30 @@ public class DraftDto {
         this.imgSrc = imgSrc;
     }
 
-    public List<Integer> getLabelsId() {
-        return labelsId;
+    public List<Label> getLabels() {
+        return labels;
     }
 
-    public void setLabelsId(List<Integer> labelsId) {
-        this.labelsId = labelsId;
+    public void setLabels(List<Label> labels) {
+        this.labels = labels;
     }
 
+    @Override
     public String getUserId() {
         return userId;
     }
 
+    @Override
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getViewNum() {
@@ -84,5 +101,13 @@ public class DraftDto {
 
     public void setLikeNum(int likeNum) {
         this.likeNum = likeNum;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

@@ -12,5 +12,5 @@ import java.util.List;
  **/
 public interface LabelDao {
 
-    boolean insertRelationWithDraft(@Param("draftId") String draftId, List<Integer> labelsId);
+    boolean insertRelationWithDraft(@Param("draftId") String draftId,@Param("labelsId") List<Integer> labelsId);
 }

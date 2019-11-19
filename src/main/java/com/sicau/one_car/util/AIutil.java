@@ -1,18 +1,13 @@
 package com.sicau.one_car.util;
 
-import com.google.gson.JsonObject;
-import com.sicau.one_car.entity.vo.MyX509TrustManager;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import net.sf.json.JSONObject;
 
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
+
 import java.io.*;
-import java.net.ConnectException;
-import java.net.URL;
+
 import java.net.URLEncoder;
 
 /**

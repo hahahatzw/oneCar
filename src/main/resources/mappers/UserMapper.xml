@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sicau.one_car.dao.UserDao">
     <insert id="addUser">
-        INSERT INTO user_tb(id, username, password
+        INSERT INTO user_tb(user_id, username, password
         <if test="email != null">
             ,email
         </if>) VALUES (#{id},#{username},#{password}
@@ -23,10 +23,10 @@
                 email = #{email},
             </if>
         </set>
-        where id = #{id}
+        where user_id = #{id}
     </update>
     <delete id="delUser">
-        delete from user_tb where id = #{id}
+        delete from user_tb where user_id = #{id}
     </delete>
 
     <select id="selectByNameAndPassword" resultType="com.sicau.one_car.entity.po.User">

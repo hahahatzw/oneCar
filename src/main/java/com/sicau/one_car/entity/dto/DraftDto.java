@@ -1,6 +1,5 @@
 package com.sicau.one_car.entity.dto;
 
-import com.sicau.one_car.entity.po.Draft;
 import com.sicau.one_car.entity.po.Label;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -13,7 +12,7 @@ import java.util.List;
  * @author tzw
  * CreateTime 17:52 2019/11/11
  **/
-public class DraftDto extends Draft{
+public class DraftDto {
 
     private String draftId;
 
@@ -69,12 +68,10 @@ public class DraftDto extends Draft{
         this.labels = labels;
     }
 
-    @Override
     public String getUserId() {
         return userId;
     }
 
-    @Override
     public void setUserId(String userId) {
         this.userId = userId;
     }

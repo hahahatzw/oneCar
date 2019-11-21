@@ -3,7 +3,6 @@ package com.sicau.one_car.service.serviceImpl;
 import com.sicau.one_car.dao.DraftDao;
 import com.sicau.one_car.dao.LabelDao;
 import com.sicau.one_car.entity.dto.DraftDto;
-import com.sicau.one_car.entity.vo.DraftVO;
 import com.sicau.one_car.entity.vo.ResultVO;
 import com.sicau.one_car.service.DraftService;
 import com.sicau.one_car.util.ResultVOUtil;

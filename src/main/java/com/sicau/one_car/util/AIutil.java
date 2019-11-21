@@ -43,15 +43,12 @@ public class AIutil {
         return null;
     }
 
-    public static JSONObject vehicleDetection(String filePath)
+    public static JSONObject vehicleDetection(String imgStr)
     {
         JSONObject jsonObject=null;
         String url = "https://aip.baidubce.com/rest/2.0/image-classify/v1/car";
         try {
-            byte[] imgData = FileUtil.readFileByBytes(filePath);
-            String imgStr = Base64Util.encode(imgData);
             String imgParam = URLEncoder.encode(imgStr, "UTF-8");
-
             String param = "image=" + imgParam + "&top_num=" + 5;
 
             String result = HttpUtil.post(url, accessToken, param);

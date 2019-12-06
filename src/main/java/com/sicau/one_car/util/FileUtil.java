@@ -1,9 +1,15 @@
 package com.sicau.one_car.util;
 
+import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.OSS;
+import com.sicau.one_car.common.Const;
 import org.springframework.web.multipart.MultipartFile;
 import sun.misc.BASE64Encoder;
 
+
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /**
@@ -12,6 +18,8 @@ import java.io.*;
  * CreateTime 21:55 2019/10/23
  **/
 public class FileUtil {
+
+
 
     /**
      * 图片转为Base64格式编码
@@ -84,6 +92,44 @@ public class FileUtil {
 
                 bos.close();
             }
+        }
+    }
+
+
+    /**
+     * 上传图片至oss
+     */
+    public static String uploadImage(MultipartFile file)
+    {
+        if(file.getSize() > Const.FileEnum.File_Size.getCode()){
+            return Const.FileEnum.File_Size.getMsg();
+        }
+        String type = file.getOriginalFilename().split("\\.")[1];
+        if(!"jpg".equals(type) && !"png".equals(type)){
+            return Const.FileEnum.File_Type_Error.getMsg();
+        }
+        /**
+         * aliyun对象存储oss管理的RAM账号
+         */
+        String endpoint="http://oss-cn-beijing.aliyuncs.com";
+        String accessKeyID="LTAI4FndULytb2AXzBUBecCU";
+        String accessKeySecret="LNhUfXY8J0RmqwONMayDu76l0RSvS0";
+        String bucketName="tzw-store";
+        OSS ossClient = new OSSClient(endpoint,accessKeyID,accessKeySecret);
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String time = sdf.format(date);
+        String fileName = time + "." + file.getOriginalFilename().split("\\.")[1];
+        String objectName="one_car/"+fileName;
+        try{
+            ossClient.putObject(bucketName,objectName,file.getInputStream());
+            return fileName;
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+            return null;
+        }finally {
+            ossClient.shutdown();
         }
     }
 

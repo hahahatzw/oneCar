@@ -15,19 +15,61 @@
             <id column="label_id" jdbcType="INTEGER" property="label_id"/>
             <result column="label_name" jdbcType="VARCHAR" property="labelName"/>
         </collection>
+        <collection property="replyList" resultMap="ReplyMap">
+
+            <!--<collection property="replies" ofType="com.sicau.one_car.entity.dto.RepliesDto">-->
+                <!--<id column="reply_id" property="replyId"/>-->
+                <!--<result column="content" property="content"/>-->
+                <!--<result column="user_id" property="userId"/>-->
+                <!--<result column="username" property="username"/>-->
+                <!--<result column="create_time" property="replyTime"/>-->
+                <!--<result column="parent_id" property="parentId"/>-->
+                <!--<result column="user_id" property="parentUserId"/>-->
+                <!--<result column="username" property="parentUsername"/>-->
+            <!--</collection>-->
+        </collection>
+    </resultMap>
+    <resultMap id="ReplyMap" type="com.sicau.one_car.entity.dto.ReplyDto">
+        <id column="reply_id" property="replyId"/>
+        <result column="reply_content" property="replyContent"/>
+        <result column="reply_user_id" property="replyUserId"/>
+        <result column="username" property="replyUsername"/>
+        <result column="create_time" property="replyTime"/>
     </resultMap>
     <insert id="insertDraft" parameterType="com.sicau.one_car.entity.dto.DraftDto" >
          insert into draft_tb(draft_id, content, img_src, user_id, view_num, like_num,create_time)
          values (#{draftId},#{content},#{imgSrc},
          #{userId},#{viewNum},#{likeNum},#{createTime})
     </insert>
+    <update id="updateDraftViewNum">
+        update draft_tb
+        set view_num=#{viewNum}+1
+        where draft_id=#{draftId}
+    </update>
+    <update id="updateDraftLikeNum">
+         update draft_tb
+        set like_num=#{likeNum}
+        where draft_id=#{draftId}
+    </update>
+    <delete id="deleteDraft">
+        delete from draft_tb where draft_id=#{id}
+    </delete>
     <select id="selectDraftWithLabel"  resultMap="BaseDraftWithLabel">
         select d.draft_id,d.content,d.img_src,d.user_id,u.username,d.view_num,d.like_num,d.create_time,
         l.label_id,l.label_name
         from draft_tb d
-        left join user_tb u on u.user_id=d.user_id
-        left join draft_label dl on dl.draft_id=d.draft_id
-        left join label_tb l on l.label_id=dl.label_id where d.draft_id=#{id};
+        join user_tb u on u.user_id=d.user_id
+        join draft_label dl on dl.draft_id=d.draft_id
+        join label_tb l on l.label_id=dl.label_id
+        where d.draft_id=#{id} ;
+    </select>
+    <select id="selectUserIdByDraft" resultType="java.lang.String">
+        select user_id from draft_tb where draft_id=#{draftId}
+    </select>
+    <select id="getDrafts" resultType="com.sicau.one_car.entity.dto.DraftDto">
+         select d.draft_id,d.content,d.img_src,d.user_id,u.username,d.view_num,d.like_num,d.create_time
+         from one_car_db.draft_tb d
+         join user_tb u on u.user_id=d.user_id
     </select>
 </mapper>
 

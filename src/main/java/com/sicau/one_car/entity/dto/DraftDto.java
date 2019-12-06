@@ -1,6 +1,7 @@
 package com.sicau.one_car.entity.dto;
 
 import com.sicau.one_car.entity.po.Label;
+import com.sicau.one_car.entity.po.Reply;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -31,6 +32,8 @@ public class DraftDto {
     private int likeNum;
 
     private Date createTime;
+
+    private List<ReplyDto> replyList;
 
     public DraftDto() {
 
@@ -106,5 +109,13 @@ public class DraftDto {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public List<ReplyDto> getReplyList() {
+        return replyList;
+    }
+
+    public void setReplyList(List<ReplyDto> replyList) {
+        this.replyList = replyList;
     }
 }

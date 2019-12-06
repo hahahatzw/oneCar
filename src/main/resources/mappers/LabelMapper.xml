@@ -9,4 +9,7 @@
             (#{draftId},#{i})
         </foreach>
     </insert>
+    <delete id="deleteAllRelation">
+        delete from draft_label where draft_id=#{id}
+    </delete>
 </mapper>

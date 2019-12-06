@@ -8,6 +8,10 @@ package com.sicau.one_car.common;
  **/
 public class Const {
 
+    public final static String version="/v1";
+    public final static String unpublic="/unpub";
+    public final static String pub="/pub";
+
     /**
      * 返回响应状态枚举
      */
@@ -66,7 +70,9 @@ public class Const {
         Vehicle_Detection(0,"车型检测"),
         Vehicle_Damage(1,"车辆损伤检测"),
         Vehicle_Attributes(2,"车辆属性检测"),
-        Vehicle_Segmentation(3,"车辆分割");
+        Vehicle_Segmentation(3,"车辆分割"),
+        Vehicle_Detect(4,"车辆检测")
+        ;
 
         private int code;
         private String msg;
@@ -85,4 +91,66 @@ public class Const {
             return msg;
         }
     }
+
+    /**
+     * 文件相关枚举
+     */
+
+    public enum FileEnum{
+        File_Size(1024*1024*5,"文件大小限制"),
+        File_Type_Error(1,"文件格式错误");
+
+        private int code;
+        private String msg;
+
+        FileEnum(int code,String msg)
+        {
+            this.code=code;
+            this.msg=msg;
+        }
+
+        public int getCode() {
+            return code;
+        }
+
+        public String getMsg() {
+            return msg;
+        }
+    }
+
+    /**
+     * 消息枚举
+     */
+
+    public enum MessageEnum{
+        Like_Draft(1,"有人给你的帖子点了一个赞"),
+        Reply_Draft(2,"有人回复了你的帖子"),
+        Reply_Reply(3,"有人回复了你的评论");
+
+
+        private String content;
+        private int code;
+
+        MessageEnum(int code,String content){
+            this.code=code;
+            this.content=content;
+        }
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
+
+        public int getCode() {
+            return code;
+        }
+
+        public void setCode(int code) {
+            this.code = code;
+        }
+    }
+
 }

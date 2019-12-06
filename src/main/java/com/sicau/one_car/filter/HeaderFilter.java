@@ -39,6 +39,7 @@ public class HeaderFilter implements Filter{
         // 字符编码
         servletResponse.setCharacterEncoding("UTF-8");
 
+        System.out.println("=========================");
         filterChain.doFilter(servletRequest,servletResponse);
 
     }

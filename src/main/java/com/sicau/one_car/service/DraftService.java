@@ -4,6 +4,7 @@ import com.sicau.one_car.entity.dto.DraftDto;
 import com.sicau.one_car.entity.vo.DraftVO;
 import com.sicau.one_car.entity.vo.ResultVO;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -17,4 +18,10 @@ public interface DraftService {
     ResultVO addDraft(DraftDto draftDto, List<Integer> labelsId);
 
     ResultVO getDraftById(String id);
+
+    ResultVO deleteDraft(String id);
+
+    ResultVO likeDraft(String id, HttpServletRequest request);
+
+    ResultVO getDrafts(int pageNum, int pageSize);
 }

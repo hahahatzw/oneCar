@@ -63,7 +63,23 @@ public class ImageRecognitionController {
         {
             return imageRecognitionService.vehicleDetection(imgSrc);
         }
-        //else if()
-        return null;
+        else if(type== Const.ImageRecognitionType.Vehicle_Damage.getCode())
+        {
+            return imageRecognitionService.vehicleDamage(imgSrc);
+        }
+        else if(type== Const.ImageRecognitionType.Vehicle_Attributes.getCode())
+        {
+            return imageRecognitionService.vehicleAttribute(imgSrc);
+        }
+        else if(type== Const.ImageRecognitionType.Vehicle_Segmentation.getCode())
+        {
+            return imageRecognitionService.vehicleSegmentation(imgSrc);
+        }
+        else if(type==Const.ImageRecognitionType.Vehicle_Detect.getCode())
+        {
+            return imageRecognitionService.vehicleDetect(imgSrc);
+        }
+        else
+            return new ResultVOUtil().fail("无其余识别类型");
     }
 }

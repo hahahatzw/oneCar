@@ -13,5 +13,7 @@
 
         <!--开启驼峰命名转换-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+
+        <setting name="autoMappingBehavior" value="PARTIAL" />
     </settings>
 </configuration>

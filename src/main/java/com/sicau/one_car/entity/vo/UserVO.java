@@ -1,33 +1,29 @@
-package com.sicau.one_car.entity.po;
+package com.sicau.one_car.entity.vo;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Description:用户实体类
+ * Description:
+ *
  * @author tzw
- * CreateTime 16:22 2019/11/2
+ * CreateTime 15:46 2019/11/28
  **/
-public class User {
+@ApiModel
+public class UserVO {
 
-    private String userId;
+    @ApiModelProperty(value = "用户名",example = "田子玮")
+    public String username;
 
-    private String username;
+    @ApiModelProperty(value = "密码",example = "123456")
+    public String password;
 
-    private String password;
+    @ApiModelProperty(value = "邮箱",example = "tzw1339502082@qq.com")
+    public String email;
 
-    private String email;
+    @ApiModelProperty(value = "验证码",example = "sd2d25s")
+    public String code;
 
-    private int isActive;
-
-    private String code;
-
-
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
     public String getUsername() {
         return username;
@@ -51,14 +47,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public int getIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(int isActive) {
-        this.isActive = isActive;
     }
 
     public String getCode() {

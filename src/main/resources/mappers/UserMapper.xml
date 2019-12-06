@@ -2,6 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sicau.one_car.dao.UserDao">
+    <resultMap id="userMap" type="com.sicau.one_car.entity.dto.UserDto">
+        <id property="userId" column="user_id"/>
+        <result property="username" column="username"/>
+        <result property="email" column="email"/>
+        <result property="password" column="password"/>
+        <collection property="roleDtos" ofType="com.sicau.one_car.entity.dto.RoleDto">
+            <id column="role_id" property="roleId"/>
+            <result property="roleName" column="role_name"/>
+            <collection property="permissions" ofType="com.sicau.one_car.entity.po.Permission">
+                <id property="pId" column="p_id"/>
+                <result property="name" column="name"/>
+                <result property="url" column="url"/>
+            </collection>
+        </collection>
+    </resultMap>
     <insert id="addUser">
         INSERT INTO user_tb(user_id, username, password
         <if test="email != null">
@@ -9,6 +24,10 @@
         </if>) VALUES (#{id},#{username},#{password}
        <if test="email != null">,#{email}
        </if>);
+    </insert>
+    <insert id="insertUser">
+        insert into user_tb(user_id, username, password, email, is_active, code)
+        values (#{userId},#{username},#{password},#{email},#{isActive},#{code})
     </insert>
     <update id="updateUser">
         update user_tb
@@ -30,6 +49,17 @@
     </delete>
 
     <select id="selectByNameAndPassword" resultType="com.sicau.one_car.entity.po.User">
-        select * from user_tb where username=#{username} and password=#{password}
+        select * from user_tb where email=#{account} and password=#{password}
+    </select>
+    <select id="findByUsername" resultMap="userMap">
+       select u.*,r.*,p.*  from user_tb u
+       left join user_role ur on u.user_id = ur.user_id
+       left join role_tb r on r.role_id=ur.role_id
+       left join permission_role pr on pr.role_id=r.role_id
+       left join  permission_tb p on p.p_id=pr.p_id
+       where u.username=#{username}
+    </select>
+    <select id="selectById" resultType="com.sicau.one_car.entity.po.User">
+        select * from user_tb where user_id=#{id}
     </select>
 </mapper>

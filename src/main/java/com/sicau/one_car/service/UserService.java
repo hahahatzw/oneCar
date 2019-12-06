@@ -1,5 +1,7 @@
 package com.sicau.one_car.service;
 
+import com.sicau.one_car.entity.dto.UserDto;
+import com.sicau.one_car.entity.po.User;
 import com.sicau.one_car.entity.vo.ResultVO;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +16,13 @@ import javax.servlet.http.HttpServletResponse;
  **/
 public interface UserService {
 
-    ResultVO login(String username, String password, HttpServletRequest request);
+    ResultVO login(String account, String password, HttpServletRequest request);
 
-    ResultVO addUser(String username, String password, String email, HttpServletRequest request);
+    ResultVO addUser(User user);
 
     ResultVO delUser(String id, HttpServletRequest request);
 
     ResultVO updateUser(String id, String username, String password, String email, HttpServletRequest request);
+
+    ResultVO getUserById(String id);
 }

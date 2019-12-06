@@ -11,5 +11,13 @@ import org.springframework.web.multipart.MultipartFile;
  **/
 public interface ImageRecognitionService {
 
-    ResultVO vehicleDetection(String filePath);
+    ResultVO vehicleDetection(String imgSrc);
+
+    ResultVO vehicleDamage(String imgSrc);
+
+    ResultVO vehicleAttribute(String imgSrc);
+
+    ResultVO vehicleSegmentation(String imgSrc);
+
+    ResultVO vehicleDetect(String imgSrc);
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sicau.one_car.dao.MessageDao">
+
+    <insert id="insertMessage">
+        insert into message_tb(message_id, message_content, send_id, get_id, create_time,relation_id,relation_type)
+        values (#{messageId}, #{messageContent}, #{sendId}, #{getId}, #{createTime},#{relationId},#{relationType})
+    </insert>
+    <update id="updateStatus">
+        update message_tb
+        set status=#{status}
+        where message_id=#{id}
+    </update>
+    <select id="selectMessageById" resultType="com.sicau.one_car.entity.dto.MessageDto">
+        select m.message_id,m.message_content,m.send_id,u1.username as sendUsername, m.get_id,u2.username as getUsername,
+        m.create_time,m.relation_id,m.relation_type,m.status
+         from message_tb m
+        join one_car_db.user_tb u1 on u1.user_id=m.send_id
+        join one_car_db.user_tb u2 on u2.user_id=m.get_id
+        where message_id=#{id}
+    </select>
+    <select id="selectMessageByUserId" resultType="com.sicau.one_car.entity.dto.MessageDto">
+        select m.message_id,m.message_content,m.send_id,u1.username as sendUsername,m.create_time,m.relation_id,m.relation_type
+        from message_tb m
+        join one_car_db.user_tb u1 on u1.user_id=m.send_id
+        where get_id=#{userId}
+    </select>
+</mapper>

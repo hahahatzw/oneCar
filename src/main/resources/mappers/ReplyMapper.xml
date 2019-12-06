@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sicau.one_car.dao.ReplyDao">
+    <resultMap id="Replies" type="com.sicau.one_car.entity.dto.RepliesDto">
+        <id property="replyId" column="reply_id"/>
+        <result property="replyContent" column="reply_content"/>
+        <result property="replyUserId" column="user_id"/>
+        <result property="replyUsername" column="username"/>
+        <result property="replyTime" column="create_time"/>
+        <result property="parentUserId" column="user_id"/>
+        <result property="parentUsername" column="username"/>
+    </resultMap>
+
+    <insert id="insert">
+        insert into reply_tb(reply_id, draft_id, reply_content, reply_user_id,parent_id,create_time)
+        values (#{replyId},#{draftId},#{replyContent},#{replyUserId},#{parentId},#{createTime})
+    </insert>
+
+    <delete id="deleteAllReplyByDraft">
+        delete from reply_tb where draft_id=#{id}
+    </delete>
+    <select id="selectReply" resultType="com.sicau.one_car.entity.dto.ReplyDto">
+
+    </select>
+    <select id="selectReplyByDraft" resultMap="com.sicau.one_car.dao.DraftDao.ReplyMap">
+        select r.*,u.username from reply_tb r
+        join user_tb u on u.user_id=r.reply_user_id
+        where parent_id="0000" and draft_id=#{draftId}
+    </select>
+    <select id="selectReplies" resultType="com.sicau.one_car.entity.dto.RepliesDto">
+        select r1.reply_user_id as replyUserId, u1.username as replyUsername,r1.reply_content as replyContent, r1.create_time as replyTime,
+        r2.reply_user_id as parentUserId,u2.username as parentUsername
+        from one_car_db.reply_tb r1
+        join one_car_db.user_tb u1 on u1.user_id=r1.reply_user_id
+        join one_car_db.reply_tb r2 on r1.parent_id=r2.reply_id
+        join one_car_db.user_tb u2 on r2.reply_user_id=u2.user_id
+        where r2.parent_id=#{replyId}
+    </select>
+
+</mapper>

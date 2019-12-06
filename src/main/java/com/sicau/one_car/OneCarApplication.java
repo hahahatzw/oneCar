@@ -11,8 +11,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 @MapperScan("com.sicau.one_car.dao")
-@ServletComponentScan
 @EnableTransactionManagement
+@ServletComponentScan
 public class OneCarApplication {
 
     public static void main(String[] args) {

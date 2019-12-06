@@ -30,8 +30,48 @@ public class ImageRecognitionServiceImpl implements ImageRecognitionService {
 
 
     @Override
-    public ResultVO vehicleDetection(String filePath) {
-        JSONObject jsonObject=AIutil.vehicleDetection(filePath);
-        return resultVOUtil.success(jsonObject);
+    public ResultVO vehicleDetection(String imgSrc) {
+        JSONObject jsonObject=AIutil.vehicleDetection(imgSrc);
+        if(jsonObject==null)
+            return resultVOUtil.fail();
+        else
+            return resultVOUtil.success(jsonObject);
+    }
+
+    @Override
+    public ResultVO vehicleDamage(String imgSrc) {
+        JSONObject jsonObject=AIutil.vehicleDamage(imgSrc);
+        if(jsonObject==null)
+            return resultVOUtil.fail();
+        else
+            return resultVOUtil.success(jsonObject);
+    }
+
+    @Override
+    public ResultVO vehicleAttribute(String imgSrc) {
+        JSONObject jsonObject=AIutil.vehicleAttribute(imgSrc);
+        if(jsonObject==null)
+            return resultVOUtil.fail();
+        else
+            return resultVOUtil.success(jsonObject);
+    }
+
+    @Override
+    public ResultVO vehicleSegmentation(String imgSrc) {
+//        JSONObject jsonObject=AIutil.vehicle(imgSrc);
+//        if(jsonObject==null)
+//            return resultVOUtil.fail();
+//        else
+//            return resultVOUtil.success(jsonObject);
+        return null;
+    }
+
+    @Override
+    public ResultVO vehicleDetect(String imgSrc) {
+        JSONObject jsonObject=AIutil.vehicleDetect(imgSrc);
+        if(jsonObject==null)
+            return resultVOUtil.fail();
+        else
+            return resultVOUtil.success(jsonObject);
     }
 }

@@ -1,11 +1,15 @@
-package com.sicau.one_car.entity.po;
+package com.sicau.one_car.entity.dto;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- * Description:用户实体类
+ * Description:
+ *
  * @author tzw
- * CreateTime 16:22 2019/11/2
+ * CreateTime 10:18 2019/11/24
  **/
-public class User {
+public class UserDto {
 
     private String userId;
 
@@ -19,7 +23,7 @@ public class User {
 
     private String code;
 
-
+    private Set<RoleDto> roleDtos=new HashSet<>();
 
     public String getUserId() {
         return userId;
@@ -51,6 +55,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<RoleDto> getRoleDtos() {
+        return roleDtos;
+    }
+
+    public void setRoleDtos(Set<RoleDto> roleDtos) {
+        this.roleDtos = roleDtos;
     }
 
     public int getIsActive() {

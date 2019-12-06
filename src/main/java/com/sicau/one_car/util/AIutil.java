@@ -25,7 +25,6 @@ public class AIutil {
     private static final String accessToken=getAccessToken(AccessKey,SecretKey);
 
 
-
     public static String getAccessToken(String accessKey,String secretKey)
     {
         String url="https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id="+accessKey+"&client_secret="+secretKey;
@@ -43,13 +42,12 @@ public class AIutil {
         return null;
     }
 
-    public static JSONObject vehicleDetection(String imgStr)
+    public static JSONObject vehicle(String imgStr,String url,String otherParam)
     {
         JSONObject jsonObject=null;
-        String url = "https://aip.baidubce.com/rest/2.0/image-classify/v1/car";
         try {
             String imgParam = URLEncoder.encode(imgStr, "UTF-8");
-            String param = "image=" + imgParam + "&top_num=" + 5;
+            String param = "image=" + imgParam+otherParam;
 
             String result = HttpUtil.post(url, accessToken, param);
             jsonObject=JSONObject.fromObject(result);
@@ -60,6 +58,31 @@ public class AIutil {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static JSONObject vehicleDetection(String imgStr)
+    {
+        String url = "https://aip.baidubce.com/rest/2.0/image-classify/v1/car";
+        String param="&top_num=5";
+        return vehicle(imgStr,url,param);
+    }
+
+    public static JSONObject vehicleDamage(String imgStr)
+    {
+        String url = "https://aip.baidubce.com/rest/2.0/image-classify/v1/vehicle_damage";
+        return vehicle(imgStr,url,null);
+    }
+
+    public static JSONObject vehicleAttribute(String imgStr)
+    {
+        String url = "https://aip.baidubce.com/rest/2.0/image-classify/v1/vehicle_attr";
+        return vehicle(imgStr,url,null);
+    }
+
+    public static JSONObject vehicleDetect(String imgStr)
+    {
+        String url = "https://aip.baidubce.com/rest/2.0/image-classify/v1/vehicle_detect";
+        return vehicle(imgStr,url,null);
     }
 
     public static void main(String[] args) {

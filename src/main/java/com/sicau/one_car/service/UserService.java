@@ -22,7 +22,7 @@ public interface UserService {
 
     ResultVO delUser(String id, HttpServletRequest request);
 
-    ResultVO updateUser(String id, String username, String password, String email, HttpServletRequest request);
+    ResultVO updateUser(User user);
 
     ResultVO getUserById(String id);
 }

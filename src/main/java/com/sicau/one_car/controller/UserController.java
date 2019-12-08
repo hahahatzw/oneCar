@@ -152,7 +152,12 @@ public class UserController {
                                @RequestParam("email") String email,
                             HttpServletRequest request)
     {
-        return userService.updateUser(id,username,password,email,request);
+        User user=new User();
+        user.setEmail(email);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setUserId(id);
+        return userService.updateUser(user);
     }
 
     @GetMapping("/user/{id}")

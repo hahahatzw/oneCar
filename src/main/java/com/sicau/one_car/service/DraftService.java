@@ -23,5 +23,7 @@ public interface DraftService {
 
     ResultVO likeDraft(String id, HttpServletRequest request);
 
-    ResultVO getDrafts(int pageNum, int pageSize);
+    ResultVO getDrafts();
+
+    ResultVO getUserDrafts(String userId);
 }

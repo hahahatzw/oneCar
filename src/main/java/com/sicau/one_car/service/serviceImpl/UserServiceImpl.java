@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
        try {
            User user=userDao.selectByNameAndPassword(account,password);
            HttpSession session=request.getSession();
-           session.setAttribute(Const.RoleEnum.USER.getRole(),user);
+           session.setAttribute("user",user);
            user.setPassword("  ");
            if(user!=null)
                return resultVOUtil.success("登陆成功",user);
@@ -90,9 +90,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResultVO updateUser(String id, String username, String password, String email, HttpServletRequest request) {
+    public ResultVO updateUser(User user) {
         try {
-            int updataTest = userDao.updateUser(id,username,password,email);
+            int updataTest = userDao.updateUser(user);
             if(updataTest==1)
                 return resultVOUtil.success();
             else

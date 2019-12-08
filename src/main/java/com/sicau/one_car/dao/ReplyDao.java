@@ -25,5 +25,5 @@ public interface ReplyDao {
 
     List<ReplyDto> selectReplyByDraft(@Param("draftId") String draftId);
 
-    List<RepliesDto> selectReplies(@Param("replyId") String replyId);
+    List<RepliesDto> selectReplies(@Param("draftId") String draftId);
 }

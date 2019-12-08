@@ -32,4 +32,6 @@ public interface DraftDao {
     String selectUserIdByDraft(@Param("draftId") String draftId);
 
     List<DraftDto> getDrafts();
+
+    List<DraftDto> selectDraftsByUserId(@Param("userId") String userId);
 }

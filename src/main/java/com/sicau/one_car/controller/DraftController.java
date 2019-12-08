@@ -1,5 +1,6 @@
 package com.sicau.one_car.controller;
 
+import com.google.common.collect.Lists;
 import com.sicau.one_car.entity.dto.DraftDto;
 import com.sicau.one_car.entity.vo.DraftVO;
 import com.sicau.one_car.entity.vo.ResultVO;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +41,7 @@ public class DraftController {
     @PostMapping("/draft")
     public ResultVO addDraft(
             @ApiParam("file") MultipartFile file,
-            @RequestParam("labelsId")List<Integer> labelsId,
+            @RequestParam("labelsId")String labels,
             DraftVO draftVO
             ) throws ParseException {
         draftVO.setViewNum(0);
@@ -47,10 +49,15 @@ public class DraftController {
         DraftDto draftDto=CopyProperties.copy(draftVO,DraftDto.class);
         draftDto.setCreateTime(DateUtil.FormateNowTime());
         draftDto.setDraftId(IDUtil.getUUID());
+        List<Integer> labelsId= Lists.newArrayList();
+        String[] arr = labels.split("\\,");
+        for (String s : arr){
+            labelsId.add(Integer.valueOf(s));
+        }
+
         String filename= FileUtil.uploadImage(file);
         String img="https://tzw-store.oss-cn-beijing.aliyuncs.com/one_car/"+filename;
         draftDto.setImgSrc(img);
-        draftDto.setImgSrc(filename);
         return draftService.addDraft(draftDto,labelsId);
     }
 
@@ -76,10 +83,16 @@ public class DraftController {
 
     @ApiOperation(value = "获取帖子列表")
     @GetMapping("/drafts")
-    public ResultVO getDraft(@RequestParam("pageNum")int pageNum,
-                             @RequestParam("pageSize")int pageSize)
+    public ResultVO getDraft()
     {
-        return draftService.getDrafts(pageNum,pageSize);
+        return draftService.getDrafts();
+    }
+
+    @ApiOperation(value = "根据用户id获取")
+    @GetMapping("/userDrafts/{userId}")
+    public ResultVO getUserDrafts(@PathVariable("userId") String userId)
+    {
+        return draftService.getUserDrafts(userId);
     }
 
 

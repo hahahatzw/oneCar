@@ -71,5 +71,11 @@
          from one_car_db.draft_tb d
          join user_tb u on u.user_id=d.user_id
     </select>
+    <select id="selectDraftsByUserId" resultType="com.sicau.one_car.entity.dto.DraftDto">
+         select d.draft_id,d.content,d.img_src,d.user_id,u.username,d.view_num,d.like_num,d.create_time
+         from one_car_db.draft_tb d
+         join user_tb u on u.user_id=d.user_id
+         where d.user_id=#{userId}
+    </select>
 </mapper>
 

@@ -19,7 +19,7 @@ public interface UserDao {
 
     int delUser(@Param("id") String id);
 
-    int updateUser(@Param("id") String id,@Param("username") String username, @Param("password") String password,@Param("email") String email);
+    int updateUser(User user);
 
     UserDto findByUsername(@Param("username") String username);
 

@@ -74,11 +74,6 @@ public class DraftServiceImpl implements DraftService {
         try{
             DraftDto draftDto=draftDao.selectDraftWithLabel(id);
             List<ReplyDto> replyDtoList=replyDao.selectReplyByDraft(draftDto.getDraftId());
-//            for(ReplyDto replyDto:replyDtoList)
-//            {
-//                List<RepliesDto> repliesDtos=replyDao.selectReplies(replyDto.getReplyId());
-//                replyDto.setReplies(repliesDtos);
-//            }
             draftDto.setReplyList(replyDtoList);
             //观看数+1
             boolean result=draftDao.updateDraftViewNum(draftDto.getViewNum(),draftDto.getDraftId());
@@ -124,7 +119,9 @@ public class DraftServiceImpl implements DraftService {
             if(user==null)
                 return resultVOUtil.fail("请重新登陆噢");
             DraftDto draftDto=draftDao.selectDraftWithLabel(id);
+            System.out.println("----------------------"+draftDto.getLikeNum());
             draftDto.setLikeNum(draftDto.getLikeNum()+1);
+            System.out.println("------------------------"+draftDto.getLikeNum());
             Message message=new Message();
             message.setMessageId(IDUtil.getUUID());
             message.setMessageContent(Const.MessageEnum.Like_Draft.getContent());
@@ -136,7 +133,7 @@ public class DraftServiceImpl implements DraftService {
             ResultVO resultVO=messageService.sendMessage(message);
             boolean result=draftDao.updateDraftLikeNum(draftDto.getLikeNum(),draftDto.getDraftId());
             if(result&&resultVO.getCode()==1)
-                 return resultVOUtil.success();
+                 return resultVOUtil.success(draftDto);
             else
                 return resultVOUtil.fail();
 
@@ -150,12 +147,26 @@ public class DraftServiceImpl implements DraftService {
     }
 
     @Override
-    public ResultVO getDrafts(int pageNum, int pageSize) {
+    public ResultVO getDrafts() {
         try{
             List<DraftDto> draftDtos=draftDao.getDrafts();
-            PageHelper.startPage(pageNum,pageSize);
             if(draftDtos!=null)
-                return resultVOUtil.success(new PageInfo<>(draftDtos));
+                return resultVOUtil.success(draftDtos);
+            else
+                return resultVOUtil.fail();
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            return resultVOUtil.unknownError();
+        }
+    }
+
+    @Override
+    public ResultVO getUserDrafts(String userId) {
+        try{
+            List<DraftDto> draftDtos=draftDao.selectDraftsByUserId(userId);
+            if(draftDtos!=null)
+                return resultVOUtil.success(draftDtos);
             else
                 return resultVOUtil.fail();
         }catch (Exception e)

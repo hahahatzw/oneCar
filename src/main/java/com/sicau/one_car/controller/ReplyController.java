@@ -34,7 +34,7 @@ public class ReplyController {
     @ApiOperation(value = "评论增加")
     @PostMapping("/reply")
     public ResultVO addReply(
-            @RequestBody ReplyVO replyVO
+             ReplyVO replyVO
             ) throws ParseException {
         Reply reply= CopyProperties.copy(replyVO, Reply.class);
         reply.setReplyId(IDUtil.getUUID());

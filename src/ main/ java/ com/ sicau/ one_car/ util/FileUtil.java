@@ -112,8 +112,8 @@ public class FileUtil {
          * aliyun对象存储oss管理的RAM账号
          */
         String endpoint="http://oss-cn-beijing.aliyuncs.com";
-        String accessKeyID="LTAI4FndULytb2AXzBUBecCU";
-        String accessKeySecret="LNhUfXY8J0RmqwONMayDu76l0RSvS0";
+        String accessKeyID="  ";
+        String accessKeySecret="   ";
         String bucketName="tzw-store";
         OSS ossClient = new OSSClient(endpoint,accessKeyID,accessKeySecret);
         Date date = new Date();
